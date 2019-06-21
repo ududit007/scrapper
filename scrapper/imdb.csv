@@ -1,0 +1,61 @@
+50
+<class 'bs4.BeautifulSoup'>
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 45 entries, 0 to 44
+Data columns (total 5 columns):
+movie        45 non-null object
+year         45 non-null object
+imdb         45 non-null float64
+metascore    45 non-null int64
+votes        45 non-null int64
+dtypes: float64(1), int64(2), object(2)
+memory usage: 1.8+ KB
+None
+                                               movie  ...   votes
+0                                              Logan  ...  561869
+1                                       Wonder Woman  ...  488526
+2                                     Thor: Ragnarok  ...  485092
+3                     Guardians of the Galaxy Vol. 2  ...  484611
+4                                            Dunkirk  ...  467699
+5            Star Wars: Episode VIII - The Last Jedi  ...  463767
+6                             Spider-Man: Homecoming  ...  428151
+7                                            Get Out  ...  402168
+8                                  Blade Runner 2049  ...  377104
+9                                        Baby Driver  ...  365352
+10                                                It  ...  360372
+11         Three Billboards Outside Ebbing, Missouri  ...  345158
+12                                    Justice League  ...  329872
+13                                The Shape of Water  ...  309002
+14                              John Wick: Chapter 2  ...  292869
+15                                              Coco  ...  278479
+16                    Jumanji: Welcome to the Jungle  ...  243380
+17                                Kong: Skull Island  ...  238878
+18                              Beauty and the Beast  ...  238858
+19                       Kingsman: The Golden Circle  ...  231441
+20  Pirates of the Caribbean: Dead Men Tell No Tales  ...  229061
+21                                   Alien: Covenant  ...  227408
+22                    War for the Planet of the Apes  ...  202468
+23                              The Greatest Showman  ...  200153
+24                                              Life  ...  183160
+25                           The Fate of the Furious  ...  180104
+26                      Murder on the Orient Express  ...  178947
+27                                         Lady Bird  ...  178242
+28                                Ghost in the Shell  ...  176774
+29                                        Wind River  ...  169451
+30                  King Arthur: Legend of the Sword  ...  169339
+31                            The Hitman's Bodyguard  ...  162073
+32                                           Mother!  ...  157287
+33                                         The Mummy  ...  154667
+34                              Call Me by Your Name  ...  154497
+35                                     Atomic Blonde  ...  150739
+36                                            Bright  ...  148105
+37                                          I, Tonya  ...  142143
+38       Valerian and the City of a Thousand Planets  ...  140176
+39                                          Baywatch  ...  137957
+40                                      Darkest Hour  ...  136867
+41                                     American Made  ...  131508
+42                     Transformers: The Last Knight  ...  119299
+43                             The Lego Batman Movie  ...  116691
+44                               The Disaster Artist  ...  112023
+
+[45 rows x 5 columns]

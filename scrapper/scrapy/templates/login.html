@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scrapper Login</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styler.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand"><b>mycomparator</b></a>
+          </div>
+          <ul class="nav navbar-nav" id="list">
+            <li><a href="/scrapy/">Home</a></li>
+            <li><a href="#">Electronics</a></li>
+            <!-- <li><a href="/scrapy/register/">Sign Up</a></li> -->
+            <li class="active"><a href="/scrapy/login/">Login</a></li>
+            <li><a href="#">Sports</a></li>
+          </ul>
+          <form class="example">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit" id="btn">submit</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+    <!--- main content -->
+    <div id=main-content class="container">
+      <div class="jumbotron">
+        <form>
+          <h2>User Login</h2>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="/scrapy/register/" >New to Scrapper? Create an account</a>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <section id="about">
+              <span><strong>About Us</strong></span>
+              <p>
+              lorem ipsum..hghjghjgjbj cajscjkabcjac nscbjksackjascjkcnsc scjsakncjkasnckjasncnsa c kjsjksackjas cnsa ccjascjkas..lorem ipsum</p>
+            </section>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <section id="contact">
+              <span><strong>Contact Us</strong></span>
+              <p>
+                lorem ipsum.....jhsvahsabcjabcjkasckj ascjknsjkcnjskncjks ncjkna jscknsajcnjks sncksancknsacjknjkn cnckjsbcjksac skjcksaa kjsncjksancjksnc sknsjancjksanc sjkchhskcn ccjksacjkac kjlorem ipsum
+              </p>
+            </section>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <section id="address">
+              <span><strong>Address</strong></span>
+              <p>
+                lorem ipsum..vchjvsajc hjbhjbsc jsbckjsabckjabc jasjilajilsa shsahckjashc jscjakbcjab bjksabkjas jskjsackascjknsakcn kabscsajbckjsabckjasbckj ..lorem ipsum
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/script.js"></script>
+  </body>
+</html>
+
+
+
+
+

@@ -1,0 +1,46 @@
+django setup
+==============================
+
+> install pyhton
+> install pip
+
+> install django
+pip3 install django version
+sudo apt install python3-django
+> to chcek django version
+django-admin --version
+
+> to uninstall django
+sudo/sudo pip  unintstall django
+
+> to activate virtual env
+source project/venv/bin/activate
+> to deactivate virtual env
+deactivate 
+
+> to start a django project
+django-admin startproject projceName
+
+> to run django server
+python manage.py runserver
+
+> to create a new app
+python manage.py startapp appName
+
+> to add migrations after building a model
+python manage.py makemigrations
+
+> to reflect models into databse
+python manage.py migrate
+
+**pyMySQL is not needed for django 2.2
+
+> pip install pyMySQL
+> pip install mysql-python
+> sudo apt-get install python3-dev
+> pip install configparser
+> sudo apt-get install mysql-server
+> sudo apt-get install python mysqlclient-dev
+
+> to install mysql client(for django 2.2)
+sudo apt-get install mysqlclient
