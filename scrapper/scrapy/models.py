@@ -7,6 +7,7 @@ from .managers import UserManager
 class User(AbstractBaseUser, PermissionsMixin):
 	name = models.CharField(max_length=50)
 	email = models.EmailField(max_length=100, unique=True)
+	password = models.CharField(max_length=128)
 	is_active = models.BooleanField(default=True)
 
 	USERNAME_FIELD = 'email'

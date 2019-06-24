@@ -1,19 +1,16 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
-from django.views import generic
+from django.http import HttpResponse
+from django.shortcuts import render
+from scrapy.models import User
 
+def create_user(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
 
-
-class IndexView(generic.ListView):
-    template_name = 'index.html'
-
-def register(request):
-    return render(request, 'register.html')
-
-
-
-
-
-
-
+        User.objects.create(
+            name = name,
+            email = email,
+            password = password
+        )
+        return HttpResponse('')
