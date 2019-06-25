@@ -1,14 +1,33 @@
+import re
+
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 
-class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
-
-	class Meta:
-		model= User
-		fields = ['username', 'email', 'password1', 'password2']
+from .constants import NAME_ERROR, EMAIL_EXIST, NON_USER
+from .models import User
 
 
-class NameForm(forms.Form):
-    your_name = forms.charField(label='your name', max_length=100)
+class UserRegisterForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ("name", "email", "password")
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+
+        if re.match(r'^[a-zA-Z]+$', name, re.I):
+            return name
+
+        raise forms.ValidationError(NAME_ERROR)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        try:
+            User.objects.get(email=email)
+
+            raise forms.ValidationError(EMAIL_EXIST)
+
+        except User.DoesNotExist:
+
+            return email

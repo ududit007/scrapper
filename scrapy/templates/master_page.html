@@ -3,9 +3,9 @@
 <html lang="en">
     <head>
         <title>
-            {% block title %}
-                <!-- Space for adding title for pages -->
-            {% endblock %} | www.myscrapper.com
+        {% block title %}
+            <!-- Space for adding title for pages -->
+        {% endblock %} | www.myscrapper.com
         </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
                     <ul class="nav navbar-nav" id="list">
                         <li><a href="/scrapy/">Home</a></li>
                         {% block topNav %}
-                        <!-- Links -->
+                            <!-- Links -->
                         {% endblock %}
                     </ul>
                     <form class="example">
@@ -38,50 +38,50 @@
                 </div>
             </nav>
         </header>
-    <div class="container-fluid">
-        {% block bodyContent %}
-            <!-- Space for adding body of pages -->
-        {% endblock %}
-    </div>
-    <footer class="panel-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <section id="about">
-                        <span><strong>About Us</strong></span>
-                        <p>
-                            We are comparing price of an item from amazon and flipkart
-                        </p>
-                    </section>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <section id="contact">
-                        <span><strong>Contact Us</strong></span>
-                        <p>
-                            Mindfire Solutions
-                            10th Floor, DLF Cybercity,
-                            Infocity Area,
-                            Bhubaneswar - 751024, Odisha, India.<br>
-                            phone: +919124101290<br>
-                            Email: uditd@mindfiresolutions.com
-                        </p>
-                    </section>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <section id="address">
-                        <span><strong>Address</strong></span>
-                        <p>
-                            Mindfire Solutions, 10th Floor, DLF Cyber City, Chandaka Industrial Estate, K I I T University, Patia, Bhubaneswar, Odisha 751024
-                        </p>
-                    </section>
+        <div class="container-fluid">
+            {% block bodyContent %}
+                <!-- Space for adding body of pages -->
+            {% endblock %}
+        </div>
+        <footer class="panel-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <section id="about">
+                            <span><strong>About Us</strong></span>
+                            <p>
+                                We are comparing price of an item from amazon and flipkart
+                            </p>
+                        </section>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <section id="contact">
+                            <span><strong>Contact Us</strong></span>
+                            <p>
+                                Mindfire Solutions
+                                10th Floor, DLF Cybercity,
+                                Infocity Area,
+                                Bhubaneswar - 751024, Odisha, India.<br>
+                                phone: +919124101290<br>
+                                Email: uditd@mindfiresolutions.com
+                            </p>
+                        </section>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <section id="address">
+                            <span><strong>Address</strong></span>
+                            <p>
+                                Mindfire Solutions, 10th Floor, DLF Cyber City, Chandaka Industrial Estate, K I I T University, Patia, Bhubaneswar, Odisha 751024
+                            </p>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
-    <script src="{% static '/js/bootstrap.min.js' %}"></script>
-    {% block scriptContent %}
-        <!-- Space for adding scripts at the end for some pages -->
-    {% endblock %}
-</body>
+        </footer>
+        <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static '/js/bootstrap.min.js' %}"></script>
+        {% block scriptContent %}
+            <!-- Space for adding scripts at the end for some pages -->
+        {% endblock %}
+    </body>
 </html>
