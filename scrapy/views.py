@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .constants import NON_USER
 from .forms import UserRegisterForm
@@ -43,12 +44,21 @@ def login_user(request):
             return render(request, 'login.html', {'error': NON_USER})
 
 
+@login_required
 def logout_user(request):
     logout(request)
+
+    return redirect('/scrapy/')
+
+
+def home(request):
+    if request.user.is_authenticated:
+        return render(request, 'loggedIn.html')
 
     return render(request, 'home.html')
 
 
+@login_required
 def scrap(request):
     if request.method == 'GET':
         q = request.GET.get('search')

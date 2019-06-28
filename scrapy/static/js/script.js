@@ -1,24 +1,23 @@
-$(document).ready(function(){
-    $('#example').on('submit', function(e){
-        // alert("fdfd")
+$(document).ready(function() {
+    $('#example').on('submit', function (e) {
+
         e.preventDefault();
         $.ajax({
             type: 'GET',
             url: '/scrapy/scrap/',
             data: {
-                search:$('#search').val(),
-                // email:$('#email').val(),
-                // password:$('#password').val(),
-                // csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                search: $('#search').val()
             },
-            success: function(result){
-              alert("search successful");
+            success: function (result) {
+                alert("search successful");
             },
-            error: function () {
-                alert("error in searching!!")
+            error: function (xhr) {
+                alert("error in searching!!");
             }
         });
+        return false;
     });
+});
 
 
 
