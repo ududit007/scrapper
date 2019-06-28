@@ -4,7 +4,8 @@ from django.shortcuts import render
 
 from .constants import NON_USER
 from .forms import UserRegisterForm
-from .models import User
+from .models import User, ScrappedData
+from .utils import scrap_amazon, scrap_flipkart
 
 
 def create_user(request):
@@ -46,6 +47,17 @@ def logout_user(request):
     logout(request)
 
     return render(request, 'home.html')
+
+
+def scrap(request):
+    if request.method == 'GET':
+        q = request.GET.get('search')
+        data = scrap_flipkart(q)
+        data += scrap_amazon(q)
+        ScrappedData.objects.bulk_create(data)
+
+        return HttpResponse('OK')
+
 
 
 

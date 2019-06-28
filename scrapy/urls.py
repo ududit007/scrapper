@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from .views import create_user, login_user, logout_user
+from .views import create_user, login_user, logout_user, scrap
 
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('loggedIn/', TemplateView.as_view(template_name="loggedIn.html")),
     path('signup/', create_user, name='signup'),
     path('login_user/', login_user, name='login_user'),
-    path('logout/', logout_user, name='logout')
+    path('logout/', logout_user, name='logout'),
+    path('scrap/', scrap, name='scrap'),
 ]
 

@@ -32,7 +32,7 @@
                         {% endblock %}
                     </ul>
                     <form class="example">
-                        <input type="text" placeholder="Search.." name="search">
+                        <input type="text" placeholder="Search.." name="search" id="search">
                         <button type="submit" id="btn">submit</button>
                     </form>
                 </div>
@@ -82,6 +82,7 @@
         <script src="{% static '/js/bootstrap.min.js' %}"></script>
         {% block scriptContent %}
             <!-- Space for adding scripts at the end for some pages -->
+            <script src="{% static '/js/script.js' %}"></script>
         {% endblock %}
     </body>
 </html>

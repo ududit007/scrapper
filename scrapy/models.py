@@ -34,3 +34,22 @@ class User(AbstractBaseUser, PermissionsMixin):
 		verbose_name = 'User'
 		verbose_name_plural = 'Users'
 
+
+class ScrappedData(models.Model):
+	source = models.CharField(max_length=20)
+	name = models.CharField(max_length=50)
+	actual_price = models.FloatField(default=0)
+	selling_price = models.FloatField(default=0)
+	rating = models.FloatField(default=1)
+	image = models.URLField(null=True, blank=True)
+
+	def __str__(self):
+		return '{}'.format(self.name)
+
+	def __repr__(self):
+		return '<ScrappedData: {}>'.format(self.name)
+
+	class Meta:
+		db_table = 'scrapped_data'
+		verbose_name = 'Scrapped_data'
+		verbose_name_plural = 'Scrapped_data'

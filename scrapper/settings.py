@@ -11,17 +11,39 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def get_env_var(name, default=None):
+    try:
+        return os.environ[name]
+    except KeyError:
+        if default:
+            return default
+
+    raise ImproperlyConfigured('Set the {0} environment variable.'.format(name))
+
+
+def read_env():
+    dotenv_path = os.path.join(BASE_DIR, '.env')
+    try:
+        load_dotenv(dotenv_path)
+    except IOError:
+        pass
+
+
+read_env()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e6z95@3)gms=v*!nba7_jgdgs07bqmvp!7d6t_nch5rt)=t**1'
+SECRET_KEY = get_env_var('SECRET_KEY', 'No-secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,17 +95,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scrapper.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'scrapy',
-        'USER': 'uditd',
-        'PASSWORD': 'mindfire',
-        'PORT': 3306
+        'NAME': get_env_var('DATABASE_NAME'),
+        'USER': get_env_var('DATABASE_USER'),
+        'PASSWORD': get_env_var('DATABASE_PASSWORD'),
+        'HOST': get_env_var('DATABASE_HOST', 'localhost'),
+        'PORT': get_env_var('DATABASE_PORT'),
+
     }
 }
 
