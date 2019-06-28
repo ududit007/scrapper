@@ -31,10 +31,13 @@
                             <!-- Links -->
                         {% endblock %}
                     </ul>
-                    <form class="example">
-                        <input type="text" placeholder="Search.." name="search" id="search">
-                        <button type="submit" id="btn">submit</button>
-                    </form>
+                 {% block searchContent %}
+            <!-- Space for adding head content for different pages -->
+                    {% endblock %}
+{#                    <form id="example">#}
+{#                        <input type="text" placeholder="Search.." name="search" id="search">#}
+{#                        <button type="submit" id="btn">submit</button>#}
+{#                    </form>#}
                 </div>
             </nav>
         </header>

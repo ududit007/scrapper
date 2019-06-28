@@ -1,5 +1,5 @@
 $(document).ready(function(){
-        $('#search').on('submit', function(e){
+    $('#example').on('submit', function(e){
         // alert("fdfd")
         e.preventDefault();
         $.ajax({
