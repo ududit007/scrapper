@@ -22,8 +22,8 @@ def scrap_amazon(param):
         if name and selling_price and actual_price and rating and image:
             amazon = {
                 'name': name.text,
-                'selling_price': selling_price.text,
-                'actual_price': actual_price.text,
+                'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
+                'actual_price': float(actual_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
                 'rating': rating.text,
                 'image': image.img['src']
             }
