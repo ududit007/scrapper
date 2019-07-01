@@ -62,3 +62,13 @@ body{
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
+#flipkartDiv{
+    background-color: mediumturquoise;
+    color: black;
+}
+
+#amazonDiv{
+    background-color: #5cb85c;
+    color: black;
+}

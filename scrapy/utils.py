@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-from .models import ScrappedData
-
 from .constants import AMAZON, FLIPKART
+
 
 def scrap_amazon(param):
     payload = {'k': param}
@@ -22,6 +21,7 @@ def scrap_amazon(param):
 
         if name and selling_price and actual_price and rating and image:
             amazon = {
+                'keyword': param,
                 'name': name.text,
                 'source': AMAZON,
                 'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
@@ -30,10 +30,7 @@ def scrap_amazon(param):
                 'image': image.img['src']
             }
 
-            amazon_list.append(ScrappedData(**amazon))
-
-    for item in amazon_list:
-        print(item)
+            amazon_list.append(amazon)
 
     return amazon_list
 
@@ -44,7 +41,6 @@ def scrap_flipkart(param):
     html_soup = BeautifulSoup(response.text, 'html.parser')
     mobile_containers = html_soup.find_all('div', class_='_1UoZlX')
 
-    flipkart = {}
     flipkart_list = []
 
     for container in mobile_containers:
@@ -56,6 +52,7 @@ def scrap_flipkart(param):
 
         if name and selling_price and actual_price and rating and image:
             flipkart = {
+                'keyword': param,
                 'name': name.text,
                 'source': FLIPKART,
                 'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
@@ -63,10 +60,7 @@ def scrap_flipkart(param):
                 'rating': rating.text,
                 'image': image.img['src']
             }
-            flipkart_list.append(ScrappedData(**flipkart))
-
-    for item in flipkart_list:
-        print(item)
+            flipkart_list.append(flipkart)
 
     return flipkart_list;
 

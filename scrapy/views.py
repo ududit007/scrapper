@@ -1,9 +1,12 @@
+import json
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
-from .constants import NON_USER
+from .constants import NON_USER, FLIPKART, AMAZON
 from .forms import UserRegisterForm
 from .models import User, ScrappedData
 from .utils import scrap_amazon, scrap_flipkart
@@ -29,17 +32,14 @@ def login_user(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email,password)
 
         user = authenticate(request, username=email, password=password)
 
         if user:
             login(request, user)
-            print(user)
-            return render(request, 'loggedIn.html')
+            return redirect('/scrapy/')
 
         else:
-            print("inside else")
             # return HttpResponse("Invalid Credentials.", status=401)
             return render(request, 'login.html', {'error': NON_USER})
 
@@ -58,15 +58,65 @@ def home(request):
     return render(request, 'home.html')
 
 
+def get_json_data(existing_data):
+
+    flipkart_data = []
+    amazon_data = []
+    for data in existing_data:
+        data_dict = {
+            'keyword': data.keyword,
+            'name': data.name,
+            'actual_price': data.actual_price,
+            'selling_price': data.selling_price,
+            'rating': data.rating,
+            'image': data.image,
+
+        }
+        if data.source == FLIPKART:
+            flipkart_data.append(data_dict)
+
+        else:
+            amazon_data.append(data_dict)
+
+    return json.dumps({'flipkart': flipkart_data, 'amazon': amazon_data})
+
+
 @login_required
 def scrap(request):
     if request.method == 'GET':
         q = request.GET.get('search')
-        data = scrap_flipkart(q)
-        data += scrap_amazon(q)
-        ScrappedData.objects.bulk_create(data)
 
-        return HttpResponse('OK')
+        existing_data = ScrappedData.objects.filter(keyword=q)
+
+        if existing_data:
+            json_data = get_json_data(existing_data)
+
+
+            return HttpResponse(json_data)
+
+        else:
+            all_data = []
+            flipkart_list = scrap_flipkart(q)
+            amazon_list = scrap_amazon(q)
+
+            for flipkart_dict in flipkart_list:
+                all_data.append(ScrappedData(**flipkart_dict))
+
+            for amazon_dict in amazon_list:
+                all_data.append(ScrappedData(**amazon_dict))
+
+            ScrappedData.objects.bulk_create(all_data)
+
+            json_data = json.dumps({'flipkart': flipkart_list, 'amazon': amazon_list})
+
+            return HttpResponse(json_data)
+
+
+# class IndexView(ListView):
+#     template_name = 'result.html'
+#
+#     def get_queryset(self):
+#         return ScrappedData.objects.all()
 
 
 

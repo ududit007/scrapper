@@ -15,7 +15,7 @@ class UserRegisterForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data.get('name')
 
-        if re.match(r'^[a-zA-Z]+$', name, re.I):
+        if re.match(r'^[a-z A-Z]+$', name, re.I):
             return name
 
         raise forms.ValidationError(NAME_ERROR)

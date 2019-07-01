@@ -37,6 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class ScrappedData(models.Model):
     source = models.CharField(max_length=20)
+    keyword = models.CharField(max_length=200, null=True, blank=True)
     name = models.CharField(max_length=500)
     actual_price = models.FloatField(default=0)
     selling_price = models.FloatField(default=0)
