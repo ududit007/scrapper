@@ -1,41 +1,46 @@
 {% extends 'master_page.html' %}
 {% load staticfiles %}
+
 {% block title %}
   Home
 {% endblock %}
+
 {% block headContent %}
   <!-- Space for adding head content for different pages -->
 {% endblock %}
+
 {% block topNav %}
-  <li><a href="/scrapy/logout/">Logout</a></li>
-    <li class="active"><a href="#">Logged In</a></li>
+     <li class="nav-item">
+        <a class="nav-link" href="/scrapy/logout/"> Logout <span class="sr-only">Logout</span></a>
+      </li>
 {% endblock %}
- {% block searchContent %}
+
+{% block searchContent %}
             <!-- Space for adding head content for different pages -->
-     <form id="example">
-        <input type="text" placeholder="Search.." name="search" id="search">
-        <button type="submit" id="btn">submit</button>
+    <form class="form-inline my-2 my-lg-0" id="example">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn">Search</button>
     </form>
- {% endblock %}
+{% endblock %}
+
 {% block bodyContent %}
   <!-- Space for adding body of pages -->
-  <div class="jumbotron jumbotron-welcome">
     <div class="row">
         <div class="col-sm-6">
-            <h1>Flipkart</h1>
+            <h1 class="text-center">Flipkart</h1>
             <div id="flipkartDiv">
 
             </div>
         </div>
          <div class="col-sm-6">
-             <h1>Amazon</h1>
-            <div id="amazonDiv">
+             <h1 class="text-center">Amazon</h1>
+             <div id="amazonDiv">
 
-            </div>
+             </div>
         </div>
     </div>
-  </div>
 {% endblock %}
+
 {% block scriptContent %}
   <!-- Space for adding scripts at the end for some pages -->
      <script src="{% static '/js/script.js' %}"></script>

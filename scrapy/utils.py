@@ -49,6 +49,7 @@ def scrap_flipkart(param):
         actual_price = container.find('div', class_='_3auQ3N _2GcJzG')
         rating = container.find('div', class_='hGSR34')
         image = container.find('div', class_='_3BTv9X')
+        link = container.find('div', class_='_1UoZlX')
 
         if name and selling_price and actual_price and rating and image:
             flipkart = {
@@ -58,7 +59,8 @@ def scrap_flipkart(param):
                 'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
                 'actual_price': float(actual_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
                 'rating': rating.text,
-                'image': image.img['src']
+                'image': image.img['src'],
+                # 'link': link.a['href']
             }
             flipkart_list.append(flipkart)
 

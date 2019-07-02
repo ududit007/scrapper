@@ -19,35 +19,38 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/scrapy/"><emp>mycomparator</emp></a>
-                    </div>
-                    <ul class="nav navbar-nav" id="list">
-                        <li><a href="/scrapy/">Home</a></li>
-                        {% block topNav %}
+        <header id="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" href="#">myComparator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/scrapy/">Home <span class="sr-only">Home</span></a>
+      </li>
+         {% block topNav %}
                             <!-- Links -->
-                        {% endblock %}
-                    </ul>
-                 {% block searchContent %}
+         {% endblock %}
+    </ul>
+        {% block searchContent %}
             <!-- Space for adding head content for different pages -->
                     {% endblock %}
-{#                    <form id="example">#}
-{#                        <input type="text" placeholder="Search.." name="search" id="search">#}
-{#                        <button type="submit" id="btn">submit</button>#}
-{#                    </form>#}
-                </div>
-            </nav>
+
+        </div>
+</nav>
         </header>
-        <div class="container-fluid">
+        <div class="container-fluid my-container">
             {% block bodyContent %}
                 <!-- Space for adding body of pages -->
             {% endblock %}
         </div>
-        <footer class="panel-footer">
-            <div class="container">
+        <div class="footer">
+        <footer class="page-footer font-small blue pt-4" id="footer">
+{#        <footer class="panel-footer">#}
+            <div class="container-fluid text-center text-md-left">
+{#            <div class="container">#}
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <section id="about">
@@ -81,6 +84,7 @@
                 </div>
             </div>
         </footer>
+        </div>
         <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
         <script src="{% static '/js/bootstrap.min.js' %}"></script>
         {% block scriptContent %}
