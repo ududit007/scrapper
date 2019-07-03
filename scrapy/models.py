@@ -43,6 +43,7 @@ class ScrappedData(models.Model):
     selling_price = models.FloatField(default=0)
     rating = models.CharField(max_length=100, blank=True, null=True)
     image = models.URLField(null=True, blank=True)
+    link_product = models.CharField(null=True, blank=True, max_length=10000)
 
     def __str__(self):
         return '{}'.format(self.name)

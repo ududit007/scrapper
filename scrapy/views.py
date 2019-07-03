@@ -70,6 +70,7 @@ def get_json_data(existing_data):
             'selling_price': data.selling_price,
             'rating': data.rating,
             'image': data.image,
+            'link_product': data.link_product,
 
         }
         if data.source == FLIPKART:
