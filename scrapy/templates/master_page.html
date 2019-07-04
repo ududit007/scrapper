@@ -41,12 +41,13 @@
         </div>
 </nav>
         </header>
+
         <div class="container-fluid my-container">
             {% block bodyContent %}
                 <!-- Space for adding body of pages -->
             {% endblock %}
         </div>
-        <div class="footer">
+
         <footer class="page-footer font-small blue pt-4" id="footer">
 {#        <footer class="panel-footer">#}
             <div class="container-fluid text-center text-md-left">
@@ -84,7 +85,7 @@
                 </div>
             </div>
         </footer>
-        </div>
+
         <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
         <script src="{% static '/js/bootstrap.min.js' %}"></script>
         {% block scriptContent %}

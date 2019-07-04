@@ -1,10 +1,11 @@
 body{
 	color: #fff;
 	background-color: #9fcdff;
-     position: relative;
+
     margin: 0;
     padding-bottom: 6rem;
-    min-height: 100%;
+    height: 100%;
+
  }
 #header{
     background-color: #007bff;
@@ -12,10 +13,7 @@ body{
     /*position: fixed;*/
 }
 
-/*.navbar{*/
-/*	background-color: #0c0;*/
-/*	padding: 20px;*/
-/*}*/
+
 
 #example{
   float: right;
@@ -26,31 +24,13 @@ body{
   font-size: 17px;
   color: black;
 }
-/*#about, #contact, #address*/
-/*#footer{*/
-/*	background-color: #1d2124 ;*/
-/*    padding: 30px;*/
-/*    height: 200px;*/
-/*    color: #fff;*/
-/*}*/
-/*.panel-footer {*/
-/*	background-color: #002;*/
-/*    color: white;*/
-/*}*/
-/*.panel-footer section {*/
-/*    margin-bottom: 30px;*/
-/*    text-align: center;*/
-/*  }*/
 
 
 
-/*#flipkartDiv{*/
-/*    background-color: mediumturquoise;*/
-/*    color: black;*/
-/*}*/
+
 
 #amazonDiv, #flipkartDiv{
-    background-color: #5cb85c;
+    /*background-color: #5cb85c;*/
     color: black;
 }
 #reg, #log{
@@ -64,19 +44,30 @@ body{
     min-height: 100%;
 }
 
-.footer {
-  /*  position: absolute;*/
-  /*right: 0;*/
-  /*bottom: 0;*/
-  /*left: 0;*/
-  /*padding: 1rem;*/
-  /*background-color: orange;*/
-  /*text-align: center;*/
 
-   position:fixed;
-   bottom:0;
+
+#footer {
+    position:fixed;
+    bottom:0;
     right: 0;
     left: 0;
+    clear: both;
+    height:20px;
    width:100%;
    background-color: #1b1e21;
 }
+
+#flipkartDivOutput, #amazonDivOutput{
+    background-color: #b8daff;
+    border: 2px solid black;
+    width: 100%;
+    height: 400px;
+    /*margin-bottom: 10px;*/
+    overflow: auto;
+
+}
+
+/*#flipkartDiv1, #flipkartDiv2{*/
+/*    !*border: 2px solid black;*!*/
+/*    margin: 8px;*/
+/*}*/

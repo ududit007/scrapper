@@ -1,12 +1,19 @@
+import random
 import requests
 from bs4 import BeautifulSoup
 
-from .constants import AMAZON, FLIPKART
+from .constants import AMAZON, FLIPKART, USER_AGENTS, PROXY
+
+agent = {
+    "User-Agent": random.choice(USER_AGENTS),
+    'Content-Type': 'application/json',
+}
+proxy = {'http': 'http://'+random.choice(PROXY)}
 
 
 def scrap_amazon(param):
     payload = {'k': param}
-    response = requests.get('https://www.amazon.in/s', params=payload)
+    response = requests.get('https://www.amazon.in/s', headers=agent, proxies=proxy, params=payload)
     html_soup = BeautifulSoup(response.text, 'html.parser')
     mobile_containers = html_soup.find_all('div', class_='a-section a-spacing-medium')
 
