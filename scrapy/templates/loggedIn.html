@@ -1,63 +1,126 @@
-{% extends 'master_page.html' %}
+{% extends "master_page.html" %}
 {% load staticfiles %}
-
 {% block title %}
-  Home
+    Home
 {% endblock %}
-
 {% block headContent %}
-  <!-- Space for adding head content for different pages -->
+    <!-- Space for adding head content for different pages -->
 {% endblock %}
-
 {% block topNav %}
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="/scrapy/logout/"> Logout <span class="sr-only">Logout</span></a>
-      </li>
+    </li>
 {% endblock %}
-
 {% block searchContent %}
-            <!-- Space for adding head content for different pages -->
-    <form class="form-inline my-2 my-lg-0" id="example">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn">Search</button>
+    <!-- Space for adding head content for different pages -->
+    <form class="form-inline my-2 my-lg-0" id="example" method="GET" action="/scrapy/scrap/">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value="{{ q }}" id="search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn">Search</button>
     </form>
 {% endblock %}
-
 {% block bodyContent %}
-  <!-- Space for adding body of pages -->
-    <div class="row" id="body_div">
+    <!-- Space for adding body of pages -->
+    <div class="row" id="body_div" >
         <div class="col-sm-6">
-            <h1 class="text-center">Flipkart</h1>
             <div id="flipkartDiv">
+                <h1 class="text-center">Flipkart</h1>
                 <div class="row">
-                    <div class="col-sm-6" id="flipkartDiv1">
-
-                    </div>
-                    <div class="col-sm-6" id="flipkartDiv2">
-
-                    </div>
+                    {% for data in data_list_flipkart %}
+                        {% if data.source == "flipkart" %}
+                            <div class="col-sm-6 border-bottom p-1 card bg-transparent">
+                                <div class="flipkartDivOutput p-2">
+                                    <a  href="https://www.flipkart.com{{data.link_product}}" id="flipkart_link" target="_blank">
+                                        <h5 id="flipkart_name">{{ data.name }}</h5>
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p id="flipkart_actual_price">Actual price: ₹ {{ data.actual_price }}</p>
+                                            <p id="flipkart_selling_price">Selling price: ₹ {{  data.selling_price }}</p>
+                                            <p id="flipkart_rating">Rating: {{ data.rating }}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img width="100%" class="img-fluid" id="flipkart_image" src="/static/images/flipkart.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
+            </div>
 
+
+     <div class="pagination">
+                <span class="step-links">
+                        {% if data_list_flipkart.has_previous %}
+                                <a href="?search={{ q }}&page_flipkart=1">&laquo; first</a>
+                                <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                                page {{ data_list_flipkart.number }} of {{ data_list_flipkart.paginator.num_pages }}
+                        </span>
+
+                        {% if data_list_flipkart.has_next %}
+                                <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.next_page_number }}">next</a>
+                                <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                </span>
             </div>
         </div>
-         <div class="col-sm-6">
-             <h1 class="text-center">Amazon</h1>
-             <div id="amazonDiv">
-                  <div class="row">
-                    <div class="col-sm-6" id="amazonDiv1">
+        <div class="col-sm-6">
+            <div id="amazonDiv">
+                <h1 class="text-center">Amazon</h1>
+                <div class="row">
+                {% for data in data_list_amazon %}
+                    {% if data.source == "amazon" %}
+                        <div class="col-sm-6 border-bottom p-1 card bg-transparent">
+                            <div class="amazonDivOutput p-2">
+                                <a  href="https://www.amazon.in{{ data.link_product }}" id="amazon_link" target="_blank">
+                                    <h5 id="amazon_name">{{ data.name }}</h5>
+                                </a>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p id="amazon_actual_price">Actual price: ₹ {{ data.actual_price }}</p>
+                                        <p id="amazon_selling_price">Selling price: ₹ {{  data.selling_price }}</p>
+                                        <p id="amazon_rating">Rating: {{ data.rating }}</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img width="100%" class="img-fluid" id="amazon_image" src="{{ data.image}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            </div>
 
-                    </div>
-                    <div class="col-sm-6" id="amazonDiv2">
 
-                    </div>
-                </div>
+     <div class="pagination">
+                <span class="step-links">
+                        {% if data_list_amazon.has_previous %}
+                                <a href="?search={{ q }}&page_amazon=1">&laquo; first</a>
+                                <a href="?search={{ q }}&page_amazon={{ data_list_amazon.previous_page_number }}">previous</a>
+                        {% endif %}
 
-             </div>
+                        <span class="current">
+                                page {{ data_list_amazon.number }} of {{ data_list_amazon.paginator.num_pages }}
+                        </span>
+
+                        {% if data_list_amazon.has_next %}
+                                <a href="?search={{ q }}&page_amazon={{ data_list_amazon.next_page_number }}">next</a>
+                                <a href="?search={{ q }}&page_amazon={{ data_list_amazon.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                </span>
+            </div>
         </div>
     </div>
-{% endblock %}
 
-{% block scriptContent %}
-  <!-- Space for adding scripts at the end for some pages -->
-     <script src="{% static '/js/script.js' %}"></script>
-{% endblock %}
+    {% endblock %}
+    {% block scriptContent %}
+        <!-- Space for adding scripts at the end for some pages -->
+        <script src="{% static "/js/jquery-2.1.4.min.js" %}"></script>
+        {#  <script src="{% static "/js/script.js" %}"></script>#}
+        {#  <script src="{% static "/js/script_data.js" %}"></script>#}
+    {% endblock %}

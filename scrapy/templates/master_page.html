@@ -9,8 +9,7 @@
         </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Firefox, Chrome, Safari, IE 11+ and Opera. -->
-        <link rel="shortcut icon" href="{% static '/image/favicon.ico' %}">
+
         <!-- Bootstrap CDN -->
         <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static '/css/styles.css' %}">
@@ -20,76 +19,73 @@
     </head>
     <body>
         <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-              <a class="navbar-brand" href="#">myComparator</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/scrapy/">Home <span class="sr-only">Home</span></a>
-      </li>
-         {% block topNav %}
+            <nav class=" navbar navbar-expand-lg ">
+                <a class="navbar-brand" href="#">myComparator</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon">toggle</span>
+               </button>
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/scrapy/">Home <span class="sr-only">Home</span></a>
+                        </li>
+                        {% block topNav %}
                             <!-- Links -->
-         {% endblock %}
-    </ul>
-        {% block searchContent %}
-            <!-- Space for adding head content for different pages -->
+                        {% endblock %}
+                    </ul>
+                    {% block searchContent %}
+                        <!-- Space for adding head content for different pages -->
                     {% endblock %}
-
-        </div>
-</nav>
+                </div>
+            </nav>
         </header>
-
         <div class="container-fluid my-container">
             {% block bodyContent %}
                 <!-- Space for adding body of pages -->
             {% endblock %}
         </div>
-
-        <footer class="page-footer font-small blue pt-4" id="footer">
-{#        <footer class="panel-footer">#}
-            <div class="container-fluid text-center text-md-left">
-{#            <div class="container">#}
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <section id="about">
-                            <span><strong>About Us</strong></span>
-                            <p>
-                                We are comparing price of an item from amazon and flipkart
-                            </p>
-                        </section>
+        <footer class="page-footer font-small  pt-4" id="footer">
+            {#        <footer class="panel-footer">#}
+                <div class="container-fluid text-center text-md-left">
+                    {#            <div class="container">#}
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <section id="about">
+                                    <span><strong>About Us</strong></span>
+                                    <p>
+                                        We are comparing price of an item from amazon and flipkart
+                                    </p>
+                                </section>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <section id="contact">
+                                    <span><strong>Contact Us</strong></span>
+                                    <p>
+                                        Mindfire Solutions
+                                        10th Floor, DLF Cybercity,
+                                        Infocity Area,
+                                        Bhubaneswar - 751024, Odisha, India.<br>
+                                        phone: +919124101290<br>
+                                        Email: uditd@mindfiresolutions.com
+                                    </p>
+                                </section>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <section id="address">
+                                    <span><strong>Address</strong></span>
+                                    <p>
+                                        Mindfire Solutions, 10th Floor, DLF Cyber City, Chandaka Industrial Estate, K I I T University, Patia, Bhubaneswar, Odisha 751024
+                                    </p>
+                                </section>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <section id="contact">
-                            <span><strong>Contact Us</strong></span>
-                            <p>
-                                Mindfire Solutions
-                                10th Floor, DLF Cybercity,
-                                Infocity Area,
-                                Bhubaneswar - 751024, Odisha, India.<br>
-                                phone: +919124101290<br>
-                                Email: uditd@mindfiresolutions.com
-                            </p>
-                        </section>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <section id="address">
-                            <span><strong>Address</strong></span>
-                            <p>
-                                Mindfire Solutions, 10th Floor, DLF Cyber City, Chandaka Industrial Estate, K I I T University, Patia, Bhubaneswar, Odisha 751024
-                            </p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
-        <script src="{% static '/js/bootstrap.min.js' %}"></script>
-        {% block scriptContent %}
-            <!-- Space for adding scripts at the end for some pages -->
-        {% endblock %}
-    </body>
-</html>
+                </footer>
+                <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
+                <script src="{% static '/js/bootstrap.min.js' %}"></script>
+                {% block scriptContent %}
+                    <!-- Space for adding scripts at the end for some pages -->
+                {% endblock %}
+            </body>
+        </html>

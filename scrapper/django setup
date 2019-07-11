@@ -40,7 +40,7 @@ python manage.py migrate
 > sudo apt-get install python3-dev
 > pip install configparser
 > sudo apt-get install mysql-server
-> sudo apt-get install python mysqlclient-dev
+> sudo apt-get install python libmysqlclient-dev
 
 > to install mysql client(for django 2.2)
 sudo apt-get install mysqlclient

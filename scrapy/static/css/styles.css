@@ -1,73 +1,87 @@
 body{
-	color: #fff;
-	background-color: #9fcdff;
-
-    margin: 0;
-    padding-bottom: 6rem;
-    height: 100%;
-
- }
-#header{
-    background-color: #007bff;
-    padding: 10px;
-    /*position: fixed;*/
+  color: black;
+  padding: 0;
+  margin: 0;
+  background-color: azure;
 }
 
-
+#header{
+  background-color: #3B5243;
+padding: 10px;
+}
 
 #example{
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-  color: black;
+float: right;
+padding: 6px;
+border: none;
+margin-top: 8px;
+margin-right: 16px;
+font-size: 17px;
+color: black;
 }
 
-
-
-
-
-#amazonDiv, #flipkartDiv{
-    /*background-color: #5cb85c;*/
-    color: black;
+#log, #reg{
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
-#reg, #log{
-    position: center;
-    /*background-color: black;*/
+
+#user_login_head, #user_reg_head{
+margin-top: 20px;
+background-color: #17a2b8;
+margin-bottom: 20px;
 }
 
 .my-container {
-    margin: 0 auto;
-    width: 94%;
-    min-height: 100%;
+margin: 0 auto;
+width: 98%;
+min-height: 60vh !important;
+}
+
+@media screen and (min-width: 576px) {
+ .flipkartDivOutput, .amazonDivOutput{
+  height: 400px;
+  }
 }
 
 
-
-#footer {
-    position:fixed;
-    bottom:0;
-    right: 0;
-    left: 0;
-    clear: both;
-    height:20px;
-   width:100%;
-   background-color: #1b1e21;
+#amazonDiv{
+  margin-left: 20px;
 }
 
-#flipkartDivOutput, #amazonDivOutput{
-    background-color: #b8daff;
-    border: 2px solid black;
-    width: 100%;
-    height: 400px;
-    /*margin-bottom: 10px;*/
-    overflow: auto;
+a {
+text-decoration: none !important;
+}
+
+#btn{
+color: black;
+}
+
+#user_login, #new_user_form{
+padding: 4px;
+}
+
+#body_div{
+  background-image: url("../images/background.jpg");
+    color: black;
 
 }
 
-/*#flipkartDiv1, #flipkartDiv2{*/
-/*    !*border: 2px solid black;*!*/
-/*    margin: 8px;*/
-/*}*/
+.card{
+  color: black;
+}
+
+#footer{
+  background-color: #54B977;
+}
+
+.navbar-brand, a.nav-link {
+  color: white;
+}
+
+
+.flipkartDivOutput, p, a{
+  color: black;
+}
+

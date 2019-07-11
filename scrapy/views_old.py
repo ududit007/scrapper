@@ -59,15 +59,42 @@ def home(request):
     return render(request, 'home.html')
 
 
+def get_json_data(existing_data):
+
+    flipkart_data = []
+    amazon_data = []
+    for data in existing_data:
+        data_dict = {
+            'keyword': data.keyword,
+            'name': data.name,
+            'actual_price': data.actual_price,
+            'selling_price': data.selling_price,
+            'rating': data.rating,
+            'image': data.image,
+            'link_product': data.link_product,
+
+        }
+        if data.source == FLIPKART:
+            flipkart_data.append(data_dict)
+
+        else:
+            amazon_data.append(data_dict)
+
+    return json.dumps({'flipkart': flipkart_data, 'amazon': amazon_data})
+
+
 @login_required
 def scrap(request):
     if request.method == 'GET':
         q = request.GET.get('search')
 
-        flipkart_data = ScrappedData.objects.filter(keyword=q, source='flipkart')
-        amazon_data = ScrappedData.objects.filter(keyword=q, source='amazon')
+        existing_data = ScrappedData.objects.filter(keyword=q)
 
-        if not flipkart_data and not amazon_data:
+        if existing_data:
+            json_data = get_json_data(existing_data)
+            return HttpResponse(json_data)
+
+        else:
             all_data = []
             flipkart_list = scrap_flipkart(q)
             amazon_list = scrap_amazon(q)
@@ -80,19 +107,20 @@ def scrap(request):
 
             ScrappedData.objects.bulk_create(all_data)
 
-            # existing_data = ScrappedData.objects.filter(keyword=q)
-            flipkart_data = ScrappedData.objects.filter(keyword=q, source='flipkart')
-            amazon_data = ScrappedData.objects.filter(keyword=q, source='amazon')
+            json_data = json.dumps({'flipkart': flipkart_list, 'amazon': amazon_list})
 
-        paginator_flipkart = Paginator(flipkart_data, 2)
-        paginator_amazon = Paginator(amazon_data, 2)
-        page_flipkart = request.GET.get('page_flipkart')
-        page_amazon = request.GET.get('page_amazon')
-        data_list_flipkart = paginator_flipkart.get_page(page_flipkart)
-        data_list_amazon = paginator_amazon.get_page(page_amazon)
+            return HttpResponse(json_data)
 
-        return render(request, 'loggedIn.html', {'data_list_flipkart': data_list_flipkart, 'data_list_amazon': data_list_amazon,'q': q})
-
+#
+# def listing(request):
+#     scrap_list = ScrappedData.objects.all()
+#     paginator = Paginator(scrap_list, 4)
+#
+#     page = request.GET.get('page')
+#     scraps = paginator.get_page(page)
+#
+#     return render(request, 'loggedIn.html', {'scraps': scraps})
+#
 
 
 

@@ -11,6 +11,10 @@ agent = {
 proxy = {'http': 'http://'+random.choice(PROXY)}
 
 
+def remove_symbol(price):
+    return float(price.text.replace('₹', '').replace(',', '').replace(' ', ''))
+
+
 def scrap_amazon(param):
     payload = {'k': param}
     response = requests.get('https://www.amazon.in/s', headers=agent, proxies=proxy, params=payload)
@@ -31,8 +35,8 @@ def scrap_amazon(param):
                 'keyword': param,
                 'name': name.text,
                 'source': AMAZON,
-                'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
-                'actual_price': float(actual_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
+                'selling_price': remove_symbol(selling_price),
+                'actual_price': remove_symbol(actual_price),
                 'rating': rating.text,
                 'image': image.img['src'],
                 'link_product': container.a['href']
@@ -64,8 +68,8 @@ def scrap_flipkart(param):
                 'keyword': param,
                 'name': name.text,
                 'source': FLIPKART,
-                'selling_price': float(selling_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
-                'actual_price': float(actual_price.text.replace('₹', '').replace(',', '').replace(' ', '')),
+                'selling_price': remove_symbol(selling_price),
+                'actual_price': remove_symbol(actual_price),
                 'rating': rating.text,
                 'image': image.img['src'],
                 'link_product': container.a['href']

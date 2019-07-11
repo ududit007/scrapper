@@ -20,10 +20,11 @@
 
     <div class="container" id="reg">
     <div class="row">
-    <div class="col-sm-12 col-md-10 col-md-offset-4">
+    <div class="col-sm-12 card shadow text-dark mt-4" id="reg_body">
+     <h2 class="text-center badge-info rounded py-2" id="user_reg_head">Registration Form</h2>
     <form id="new_user_form" method="POST" action={% url 'signup' %}>
             {% csrf_token %}
-            <h2 class="text-center">Registration Form</h2>
+
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ data.name }}" required>
@@ -46,7 +47,7 @@
                 {% endif %}
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
         <a href="/scrapy/login/">Existing user? Login</a>
     </div>

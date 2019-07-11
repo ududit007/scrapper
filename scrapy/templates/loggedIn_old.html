@@ -1,0 +1,81 @@
+{% extends 'master_page.html' %}
+{% load staticfiles %}
+{% block title %}
+  Home
+{% endblock %}
+{% block headContent %}
+  <!-- Space for adding head content for different pages -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+{% endblock %}
+{% block topNav %}
+  <li class="nav-item">
+    <a class="nav-link" href="/scrapy/logout/"> Logout <span class="sr-only">Logout</span></a>
+  </li>
+{% endblock %}
+{% block searchContent %}
+  <!-- Space for adding head content for different pages -->
+  <form class="form-inline my-2 my-lg-0" id="example" >
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn">Search</button>
+  </form>
+{% endblock %}
+{% block bodyContent %}
+  <!-- Space for adding body of pages -->
+  <div class="row" id="body_div">
+    <div class="col-sm-6">
+      <div id="flipkartDiv">
+
+      </div>
+    </div>
+    <div class="col-sm-6">
+        <div id="amazonDiv"></div>
+    </div>
+  </div>
+
+    <div class=\"col-sm-6 border-bottom p-1 card bg-transparent\"><div class='flipkartDivOutput p-2'>"
+            + "<a  href='https://www.flipkart.com"+ flipkart_data[i].link_product +"' id=\"flipkart_link\" target=\"_blank\">"
+            + "<h6 id=\"flipkart_name\">" + flipkart_data[i].name + "</h6>"
+            + "<div class='row'><div class='col-sm-6'>"
+            + "<p id=\"flipkart_actual_price\">Actual price: ₹" + flipkart_data[i].actual_price + "</p>"
+            + "<p id=\"flipkart_selling_price\">Selling price: ₹" + flipkart_data[i].selling_price + "</p>"
+            + "<p id=\"flipkart_rating\">Rating: " + flipkart_data[i].rating + "</p>"
+            + "</div> "
+            + "<div class='col-sm-6'>"
+            + "<img width='100%' class='img-fluid' id=\"flipkart_image\" src='/static/images/flipkart.png'>"
+            + "</div></div></div>"
+            + "</div>
+{##}
+{#    {% for scrap in scraps %}#}
+{#        {{ scrap.name }}<br>#}
+{#        {{ scrap.selling_price }}#}
+{#    {% endfor %}#}
+{##}
+{#    <div class="pagination">#}
+{#        <span class="step-links">#}
+{#            {% if scraps.has_previous %}#}
+{#                <a href="?page=1">&laquo; first</a>#}
+{#                <a href="?page={{ scraps.previous_page_number }}">previous</a>#}
+{#            {% endif %}#}
+{##}
+{#            <span class="current">#}
+{#                page {{ scraps.number }} of {{ scraps.paginator.num_pages }}#}
+{#            </span>#}
+{##}
+{#            {% if scraps.has_next %}#}
+{#                <a href="?page={{ scraps.next_page_number }}">next</a>#}
+{#                <a href="?page={{ scraps.paginator.num_pages }}">last &raquo;</a>#}
+{#            {% endif %}#}
+{#        </span>#}
+{#    </div>#}
+
+
+{% endblock %}
+{% block scriptContent %}
+  <!-- Space for adding scripts at the end for some pages -->
+     <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
+  <script src="{% static '/js/script.js' %}"></script>
+  <script src="{% static '/js/script_data.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+{% endblock %}

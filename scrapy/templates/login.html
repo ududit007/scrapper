@@ -7,42 +7,40 @@
   <!-- Space for adding head content for different pages -->
 {% endblock %}
 {% block topNav %}
-     <li class="nav-item active">
-        <a class="nav-link" href="/scrapy/login/">Login<span class="sr-only">Login</span></a>
-      </li>
-{#  <li class="active"><a href="/scrapy/login/">Login</a></li>#}
+  <li class="nav-item active">
+    <a class="nav-link" href="/scrapy/login/">Login<span class="sr-only">Login</span></a>
+  </li>
+  {#  <li class="active"><a href="/scrapy/login/">Login</a></li>#}
 {% endblock %}
 {% block bodyContent %}
   <!-- Space for adding body of pages -->
-{#    <link rel="stylesheet" href="{% static '/css/style_login.css' %}">#}
-    <div class="container" id="log">
+  <div class="container" id="log">
     <div class="row">
-    <div class="col-sm-12 col-md-10 col-md-offset-4">
-    <form id = "user_login" method="POST" action={% url 'login_user' %}>{% csrf_token %}
-      <h2 class="text-center">User Login</h2>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" name="email" placeholder="Enter email" id="email" required>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <div class="col-sm-12 card shadow text-dark mt-4" id="login_body">
+        <h2 class="text-center badge-info rounded py-2" id="user_login_head">User Login</h2>
+        <form id = "user_login" method="POST" action={% url 'login_user' %}>{% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email" id="email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="password"  placeholder="Password" required>
+            <p class="text-danger">{{ error }}</p>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        <a href="/scrapy/register/" class="btn">New to Scrapper? Create an account</a>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="password" name="password"  placeholder="Password" required>
-          <p class="text-danger">{{ error }}</p>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Remember me</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <a href="/scrapy/register/" >New to Scrapper? Create an account</a>
+    </div>
   </div>
-    </div>
-    </div>
-
 {% endblock %}
 {% block scriptContent %}
   <!-- Space for adding scripts at the end for some pages -->
-{#  <script src="{% static '/js/script.js' %}"></script>#}
+  {#  <script src="{% static '/js/script.js' %}"></script>#}
 {% endblock %}

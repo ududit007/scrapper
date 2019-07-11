@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from scrapy.models import ScrappedData
 from scrapy.utils import scrap_amazon, scrap_flipkart
 
-keys = ['mobile', 'redmi', 'apple']
+keys = []
 
 
 def update_data():
@@ -24,10 +24,9 @@ def update_data():
 
 
 class Command(BaseCommand):
-    # scrap_data = ScrappedData.objects.all()
+    # scrap_data = ScrappedData.objects.values('keyword').distinct()
     # for data in scrap_data:
-    #     key = data.keyword
-    #     keys.append(key)
+    #     keys.append(data)
 
     def handle(self, *args, **options):
         update_data()
