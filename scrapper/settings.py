@@ -50,7 +50,7 @@ DEBUG = True
 #   template = loader.get_template('scrapy/index.html')
 #   context = {
 
-ALLOWED_HOSTS = ['172.16.9.138', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS', 'localhost')
 
 
 # Application definition
