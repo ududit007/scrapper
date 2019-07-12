@@ -22,7 +22,7 @@ def create_user(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
 
-            User.objects.create_user(name, email, password)
+            User.objects.create_user(email, name=name, password=password)
             return render(request, 'login.html')
 
         else:

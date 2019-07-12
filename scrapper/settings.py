@@ -50,8 +50,7 @@ DEBUG = True
 #   template = loader.get_template('scrapy/index.html')
 #   context = {
 
-ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS', 'localhost')
-
+ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS', 'localhost').split(',')
 
 # Application definition
 
