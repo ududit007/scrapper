@@ -16,7 +16,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def get_env_var(name, default=None):
@@ -46,7 +46,7 @@ read_env()
 SECRET_KEY = get_env_var('SECRET_KEY', 'No-secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 #   template = loader.get_template('scrapy/index.html')
 #   context = {
 
