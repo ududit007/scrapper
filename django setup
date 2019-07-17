@@ -44,3 +44,9 @@ python manage.py migrate
 
 > to install mysql client(for django 2.2)
 sudo apt-get install mysqlclient
+
+
+**To start server
+  ssh -i "webserver1.pem" ubuntu@ec2-13-235-124-113.ap-south-1.compute.amazonaws.com
+  ssh -i webserver1.pem ubuntu@13.235.124.113
+

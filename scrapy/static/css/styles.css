@@ -1,43 +1,23 @@
-body{
-  color: black;
-  padding: 0;
-  margin: 0;
-  background-color: azure;
-}
-
 #header{
-  background-color: #3B5243;
-padding: 10px;
-}
+background-color: #3B5243;
 
-#example{
-float: right;
-padding: 6px;
-border: none;
-margin-top: 8px;
-margin-right: 16px;
-font-size: 17px;
-color: black;
 }
 
 #log, #reg{
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+    margin-top: 30px;
+    margin-bottom: 68px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #user_login_head, #user_reg_head{
-margin-top: 20px;
-background-color: #17a2b8;
-margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #3B5243;
+    margin-bottom: 20px;
 }
 
-.my-container {
-margin: 0 auto;
-width: 98%;
-min-height: 60vh !important;
-}
 
 @media screen and (min-width: 576px) {
  .flipkartDivOutput, .amazonDivOutput{
@@ -45,6 +25,11 @@ min-height: 60vh !important;
   }
 }
 
+@media screen and (max-width: 991px) {
+ .navbar-nav{
+        mr-auto;
+  }
+}
 
 #amazonDiv{
   margin-left: 20px;
@@ -54,34 +39,23 @@ a {
 text-decoration: none !important;
 }
 
-#btn{
-color: black;
-}
-
 #user_login, #new_user_form{
 padding: 4px;
 }
 
-#body_div{
-  background-image: url("../images/background.jpg");
-    color: black;
-
-}
-
-.card{
-  color: black;
-}
-
-#footer{
+.btn, #footer{
   background-color: #54B977;
 }
 
-.navbar-brand, a.nav-link {
+.navbar-brand, a.nav-link, a.nav-link:hover {
   color: white;
 }
 
+#navbar{
+    margin-bottom: 0;
+}
 
-.flipkartDivOutput, p, a{
-  color: black;
+#log{
+    margin-bottom: 123px;
 }
 

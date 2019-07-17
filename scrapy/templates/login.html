@@ -8,7 +8,7 @@
 {% endblock %}
 {% block topNav %}
   <li class="nav-item active">
-    <a class="nav-link" href="/scrapy/login/">Login<span class="sr-only">Login</span></a>
+    <a class="nav-link" href="/scrapy/register/"><i class="glyphicon glyphicon-log-in">Signup</i><span class="sr-only">Signup</span></a>
   </li>
   {#  <li class="active"><a href="/scrapy/login/">Login</a></li>#}
 {% endblock %}
@@ -29,13 +29,10 @@
             <input type="password" class="form-control" id="password" name="password"  placeholder="Password" required>
             <p class="text-danger">{{ error }}</p>
           </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+          <button type="submit" class="btn btn-block">Submit</button>
         </form>
-        <a href="/scrapy/register/" class="btn">New to Scrapper? Create an account</a>
+        <a href="/scrapy/register/">New to Scrapper? Create an account</a>
       </div>
     </div>
   </div>

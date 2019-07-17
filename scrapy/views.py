@@ -1,16 +1,23 @@
-import json
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.cache import cache
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.http import HttpResponse
+from django.db.models import Model
 from django.shortcuts import render, redirect
-
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.views.decorators.cache import cache_page
 
 from .constants import NON_USER, FLIPKART, AMAZON
 from .forms import UserRegisterForm
 from .models import User, ScrappedData
 from .utils import scrap_amazon, scrap_flipkart
+from scrapper import settings
+from .tokens import account_activation_token
 
 
 def create_user(request):
@@ -18,12 +25,25 @@ def create_user(request):
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
-            name = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
+            user = form.save(commit=False)
+            user.set_password(password)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            message = render_to_string('acc_active.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
 
-            User.objects.create_user(email, name=name, password=password)
-            return render(request, 'login.html')
+            send_mail("Scrapper Verification", message, settings.local.DEFAULT_FROM_EMAIL, [email])
+            # print("exception occured")
+            # User.objects.create_user(email, name=name, password=password)
+            # return HttpResponse('Please confirm your email address to complete the registration')
+            return redirect('/scrapy/login/')
 
         else:
             return render(request, 'register.html', {'form': form, 'data': request.POST})
@@ -60,13 +80,23 @@ def home(request):
 
 
 @login_required
+@cache_page(60 * 15)
 def scrap(request):
     if request.method == 'GET':
+        cache._cache.flush_all()
         q = request.GET.get('search')
+        if q is None:
+            return redirect('home')
+        q1 = q.replace(' ', '_')
+        flipkart_data = cache.get(q1 + 'flipkart')
+        amazon_data = cache.get(q1 + 'amazon')
 
-        flipkart_data = ScrappedData.objects.filter(keyword=q, source='flipkart')
-        amazon_data = ScrappedData.objects.filter(keyword=q, source='amazon')
-
+        if not flipkart_data and not amazon_data:
+            flipkart_data = ScrappedData.objects.filter(keyword=q, source='flipkart')
+            amazon_data = ScrappedData.objects.filter(keyword=q, source='amazon')
+            q2 = q.replace(' ', '_')
+            cache.set(q2+'flipkart', flipkart_data)
+            cache.set(q2+'amazon', amazon_data)
         if not flipkart_data and not amazon_data:
             all_data = []
             flipkart_list = scrap_flipkart(q)
@@ -92,6 +122,23 @@ def scrap(request):
         data_list_amazon = paginator_amazon.get_page(page_amazon)
 
         return render(request, 'loggedIn.html', {'data_list_flipkart': data_list_flipkart, 'data_list_amazon': data_list_amazon,'q': q})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return redirect('home')
+        # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
 
 
 
