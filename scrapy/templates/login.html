@@ -8,9 +8,8 @@
 {% endblock %}
 {% block topNav %}
   <li class="nav-item active">
-    <a class="nav-link" href="/scrapy/register/"><i class="glyphicon glyphicon-log-in"></i> Signup</a>
+    <a class="nav-link" href={% url 'register' %}><i class="glyphicon glyphicon-log-in"></i> Signup</a>
   </li>
-  {#  <li class="active"><a href="/scrapy/login/">Login</a></li>#}
 {% endblock %}
 {% block bodyContent %}
   <!-- Space for adding body of pages -->
@@ -32,7 +31,7 @@
 
           <button type="submit" class="btn btn-block">Submit</button>
         </form>
-        <a href="/scrapy/register/">New to Scrapper? Create an account</a>
+        <a href={% url 'register' %}>New to Scrapper? Create an account</a>
       </div>
     </div>
   </div>

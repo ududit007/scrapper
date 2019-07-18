@@ -11,7 +11,7 @@
 
 {% block topNav %}
     <li class="nav-item active">
-        <a class="nav-link" href="/scrapy/login/"><i class="glyphicon glyphicon-log-in"></i> Login</a>
+        <a class="nav-link" href={% url 'login' %}><i class="glyphicon glyphicon-log-in"></i> Login</a>
       </li>
 {% endblock %}
 
@@ -49,7 +49,7 @@
 
             <button type="submit" class="btn btn-block">Submit</button>
         </form>
-        <a href="/scrapy/login/">Existing user? Login</a>
+        <a href={% url 'login' %}>Existing user? Login</a>
     </div>
     </div>
     </div>

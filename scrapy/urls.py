@@ -7,8 +7,8 @@ from . import views
 
 urlpatterns = [
     path('', home, name='home'),
-    path('register/', TemplateView.as_view(template_name="register.html")),
-    path('login/', TemplateView.as_view(template_name="login.html")),
+    path('register/', TemplateView.as_view(template_name="register.html"), name='register'),
+    path('login/', TemplateView.as_view(template_name="login.html"), name='login'),
     path('signup/', create_user, name='signup'),
     path('login_user/', login_user, name='login_user'),
     path('logout/', logout_user, name='logout'),
