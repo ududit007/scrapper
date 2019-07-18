@@ -56,7 +56,7 @@ def login_user(request):
 
         if user:
             login(request, user)
-            return redirect('/scrapy/')
+            return redirect('home')
 
         else:
             # return HttpResponse("Invalid Credentials.", status=401)
@@ -101,6 +101,9 @@ def scrap(request):
             if not flipkart_list:
                 flipkart_list = scrap_flipkart2(q)
             amazon_list = scrap_amazon(q)
+            print(flipkart_list,amazon_list)
+            if not flipkart_list and not amazon_list:
+                return redirect('home')
 
             for flipkart_dict in flipkart_list:
                 all_data.append(ScrappedData(**flipkart_dict))
