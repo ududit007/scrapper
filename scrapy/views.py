@@ -1,3 +1,4 @@
+from django.conf import  settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
@@ -16,7 +17,6 @@ from .constants import NON_USER, FLIPKART, AMAZON
 from .forms import UserRegisterForm
 from .models import User, ScrappedData
 from .utils import scrap_amazon, scrap_flipkart
-from scrapper import settings
 from .tokens import account_activation_token
 
 
@@ -31,19 +31,17 @@ def create_user(request):
                 user.set_password(password)
                 user.is_active = False
                 user.save()
-                try:
-                    current_site = get_current_site(request)
-                    message = render_to_string('acc_active.html', {
-                        'user': user,
-                        'domain': current_site.domain,
-                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                        'token': account_activation_token.make_token(user),
-                    })
 
-                    send_mail("Scrapper Verification", message, settings.local.DEFAULT_FROM_EMAIL, [email])
-                    return redirect('/scrapy/login/')
-                except Exception as e:
-                    print(e)
+                current_site = get_current_site(request)
+                message = render_to_string('acc_active.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+
+                send_mail("Scrapper Verification", message, settings.DEFAULT_FROM_EMAIL, [email])
+                return redirect('/scrapy/login/')
 
             else:
                 return render(request, 'register.html', {'form': form, 'data': request.POST})
