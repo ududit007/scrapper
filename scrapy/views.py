@@ -21,32 +21,35 @@ from .tokens import account_activation_token
 
 
 def create_user(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+    try:
+        if request.method == 'POST':
+            form = UserRegisterForm(request.POST)
 
-        if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            user = form.save(commit=False)
-            user.set_password(password)
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request)
-            message = render_to_string('acc_active.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
+            if form.is_valid():
+                email = form.cleaned_data.get('email')
+                password = form.cleaned_data.get('password')
+                user = form.save(commit=False)
+                user.set_password(password)
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                message = render_to_string('acc_active.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
 
-            send_mail("Scrapper Verification", message, settings.local.DEFAULT_FROM_EMAIL, [email])
-            # print("exception occured")
-            # User.objects.create_user(email, name=name, password=password)
-            # return HttpResponse('Please confirm your email address to complete the registration')
-            return redirect('/scrapy/login/')
+                send_mail("Scrapper Verification", message, settings.local.DEFAULT_FROM_EMAIL, [email])
+                # print("exception occured")
+                # User.objects.create_user(email, name=name, password=password)
+                # return HttpResponse('Please confirm your email address to complete the registration')
+                return redirect('/scrapy/login/')
 
-        else:
-            return render(request, 'register.html', {'form': form, 'data': request.POST})
+            else:
+                return render(request, 'register.html', {'form': form, 'data': request.POST})
+    except Exception as e:
+        print(e)
 
 
 def login_user(request):
