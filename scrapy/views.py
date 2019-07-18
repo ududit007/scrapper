@@ -40,7 +40,7 @@ def create_user(request):
                     'token': account_activation_token.make_token(user),
                 })
 
-                send_mail("Scrapper Verification", message, settings.DEFAULT_FROM_EMAIL, [email])
+                send_mail("Scrapper Verification", message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=True)
                 return redirect('/scrapy/login/')
 
             else:
