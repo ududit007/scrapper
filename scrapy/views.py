@@ -16,7 +16,7 @@ from django.views.decorators.cache import cache_page
 from .constants import NON_USER, FLIPKART, AMAZON
 from .forms import UserRegisterForm
 from .models import User, ScrappedData
-from .utils import scrap_amazon, scrap_flipkart
+from .utils import scrap_amazon, scrap_flipkart, scrap_flipkart2
 from .tokens import account_activation_token
 
 
@@ -81,7 +81,7 @@ def home(request):
 @cache_page(60 * 15)
 def scrap(request):
     if request.method == 'GET':
-        cache._cache.flush_all()
+        # cache._cache.flush_all()
         q = request.GET.get('search')
         if q is None:
             return redirect('home')
@@ -98,6 +98,8 @@ def scrap(request):
         if not flipkart_data and not amazon_data:
             all_data = []
             flipkart_list = scrap_flipkart(q)
+            if not flipkart_list:
+                flipkart_list = scrap_flipkart2(q)
             amazon_list = scrap_amazon(q)
 
             for flipkart_dict in flipkart_list:

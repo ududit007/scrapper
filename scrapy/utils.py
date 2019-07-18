@@ -76,4 +76,37 @@ def scrap_flipkart(param):
             }
             flipkart_list.append(flipkart)
 
-    return flipkart_list;
+    return flipkart_list
+
+
+def scrap_flipkart2(param):
+    payload = {'q': param}
+    response = requests.get('http://www.flipkart.com/search', params=payload)
+    html_soup = BeautifulSoup(response.text, 'html.parser')
+    mobile_containers = html_soup.find_all('div', class_='_3liAhj _1R0K0g')
+
+    flipkart_list = []
+
+    for container in mobile_containers:
+        name = container.find('a', class_='_2cLu-l')
+        selling_price = container.find('div', class_='_1vC4OE')
+        actual_price = container.find('div', class_='_3auQ3N')
+        rating = container.find('div', class_='hGSR34')
+        image = container.find('div', class_='_3BTv9X')
+        link = container.find('a', class_='Zhf2z-')
+
+        if name and selling_price and actual_price and rating and image and container:
+            flipkart = {
+                'keyword': param,
+                'name': name.text,
+                'source': FLIPKART,
+                'selling_price': remove_symbol(selling_price),
+                'actual_price': remove_symbol(actual_price),
+                'rating': rating.text,
+                'image': image.img['src'],
+                'link_product': container.a['href']
+            }
+            flipkart_list.append(flipkart)
+
+    return flipkart_list
+
