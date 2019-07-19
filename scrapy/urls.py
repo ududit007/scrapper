@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name='logout'),
     path('scrap/', Scrap.as_view(), name='scrap'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        views.Activate, name='activate')
+        views.Activate, name='activate'),
+
 ]
 

@@ -13,6 +13,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 from django.views.decorators.cache import cache_page
+from django.views.generic import ListView
 
 from .constants import NON_USER, FLIPKART, AMAZON
 from .forms import UserRegisterForm
@@ -65,7 +66,6 @@ class Login(View):
             return redirect('home')
 
         else:
-            # return HttpResponse("Invalid Credentials.", status=401)
             return render(request, 'login.html', {'error': NON_USER})
 
 
@@ -125,7 +125,6 @@ class Scrap(View):
 
                 ScrappedData.objects.bulk_create(all_data)
 
-                # existing_data = ScrappedData.objects.filter(keyword=q)
                 flipkart_data = ScrappedData.objects.filter(keyword=q, source='flipkart')
                 amazon_data = ScrappedData.objects.filter(keyword=q, source='amazon')
 
