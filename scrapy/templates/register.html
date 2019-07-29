@@ -22,9 +22,7 @@
     <div class="row">
     <div class="col-sm-12 card shadow text-dark mt-4" id="reg_body">
      <h2 class="text-center badge-info rounded py-2" id="user_reg_head">Registration Form</h2>
-    <form id="new_user_form" method="POST" action={% url 'signup' %}>
-            {% csrf_token %}
-
+    <form id="new_user_form">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ data.name }}" required>
@@ -47,14 +45,18 @@
                 {% endif %}
             </div>
 
-            <button type="submit" class="btn btn-block">Submit</button>
+            <button type="submit" id="submit" class="btn btn-block">Submit</button>
         </form>
+
         <a href={% url 'login' %}>Existing user? Login</a>
     </div>
     </div>
     </div>
+<!--<div class="loader" id="loading-image" style="display:none"></div>-->
 {% endblock %}
 
 {% block scriptContent %}
     <!-- Space for adding scripts at the end for some pages -->
+     <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
+     <script src="{% static '/js/script.js' %}"></script>
 {% endblock %}

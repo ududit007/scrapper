@@ -16,7 +16,7 @@
 {% endblock %}
 {% block searchContent %}
     <!-- Space for adding head content for different pages -->
-    <form class="form-inline my-2 float-left" id="search_form" method="GET" action="/scrapy/scrap/">
+    <form class="form-inline my-2 float-left" id="search_form">
         <div class="input-group">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" value="{{ q }}" id="search" name="search">
             <div class="input-group-append">
@@ -26,115 +26,133 @@
     </form>
 {% endblock %}
 {% block bodyContent %}
-    <!-- Space for adding body of pages -->
-    <div class="row" id="body_div" >
-        {% if not q %}
-        <div class="container-fluid">
-            <img class="img-fluid" src="{% static 'images/log_back.jpg' %}" />
-        </div>
-        {% endif %}
-
-        {% if q %}
+<div class="jumbotron jumbotron-welcome">
+    <div class="row">
         <div class="col-sm-6">
+            <h1>Flipkart</h1>
             <div id="flipkartDiv">
-                <h1 class="text-center">Flipkart</h1>
-                <div class="row">
-                    {% for data in data_list_flipkart %}
-                        {% if data.source == "flipkart" %}
-                            <div class="col-sm-6 border-bottom  card bg-transparent">
-                                <div class="flipkartDivOutput ">
-                                    <a  href="https://www.flipkart.com{{data.link_product}}" id="flipkart_link" target="_blank">
-                                        <h5 id="flipkart_name">{{ data.name }}</h5>
-                                    </a>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p id="flipkart_actual_price">Actual price: ₹{{ data.actual_price }}</p>
-                                            <p id="flipkart_selling_price">Selling price: ₹{{  data.selling_price }}</p>
-                                            <p id="flipkart_rating">Rating: {{ data.rating }}</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <img width="100%" class="img-fluid" id="flipkart_image" src="/static/images/flipkart.png">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
 
-
-     <div class="pagination">
-                <span class="step-links">
-                    <ul class="pagination">
-                        {% if data_list_flipkart.has_previous %}
-                    <li> <a href="?search={{ q }}&page_flipkart=1&page_amazon={{ data_list_amazon.number }}">&laquo; first</a></li>
-                    <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.previous_page_number }}&page_amazon={{ data_list_amazon.number }}">previous</a></li>
-                        {% endif %}
-
-                        <li class="active"><a href="#"> {{ data_list_flipkart.number }}</a></li>
-
-
-                        {% if data_list_flipkart.has_next %}
-                        <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.next_page_number }}&page_amazon={{ data_list_amazon.number }}">next</a></li>
-                        <li><a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.paginator.num_pages }}&page_amazon={{ data_list_amazon.number }}">last &raquo;</a></li>
-                        {% endif %}
-                    </ul>
-                </span>
             </div>
         </div>
-        <div class="col-sm-6">
+         <div class="col-sm-6">
+             <h1>Amazon</h1>
             <div id="amazonDiv">
-                <h1 class="text-center">Amazon</h1>
-                <div class="row">
-                {% for data in data_list_amazon %}
-                    {% if data.source == "amazon" %}
-                        <div class="col-sm-6 border-bottom  card bg-transparent">
-                            <div class="amazonDivOutput">
-                                <a  href="https://www.amazon.in{{ data.link_product }}" id="amazon_link" target="_blank">
-                                    <h5 id="amazon_name">{{ data.name }}</h5>
-                                </a>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p id="amazon_actual_price">Actual price: ₹{{ data.actual_price }}</p>
-                                        <p id="amazon_selling_price">Selling price: ₹{{  data.selling_price }}</p>
-                                        <p id="amazon_rating">Rating: {{ data.rating }}</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <img width="100%" class="img-fluid" id="amazon_image" src="{{ data.image}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            </div>
 
-
-     <div class="pagination">
-                <span class="step-links">
-                     <ul class="pagination">
-                        {% if data_list_amazon.has_previous %}
-                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon=1">&laquo; first</a></li>
-                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.previous_page_number }}">previous</a></li>
-                        {% endif %}
-                         <li class="active"><a href="#"> {{ data_list_amazon.number }}</a></li>
-
-                        {% if data_list_amazon.has_next %}
-                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.next_page_number }}">next</a></li>
-                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.paginator.num_pages }}">last &raquo;</a></li>
-                        {% endif %}
-                </span>
             </div>
         </div>
-        {% endif %}
     </div>
+  </div>
+
+
+
+    <!-- Space for adding body of pages -->
+<!--    <div class="row" id="body_div" >-->
+<!--        {% if not q %}-->
+<!--        <div class="container-fluid">-->
+<!--            <img class="img-fluid" src="{% static 'images/log_back.jpg' %}" />-->
+<!--        </div>-->
+<!--        {% endif %}-->
+
+<!--        {% if q %}-->
+<!--        <div class="col-sm-6">-->
+<!--            <div id="flipkartDiv">-->
+<!--                <h1 class="text-center">Flipkart</h1>-->
+<!--                <div class="row">-->
+<!--                    {% for data in data_list_flipkart %}-->
+<!--                        {% if data.source == "flipkart" %}-->
+<!--                            <div class="col-sm-6 border-bottom  card bg-transparent">-->
+<!--                                <div class="flipkartDivOutput ">-->
+<!--                                    <a  href="https://www.flipkart.com{{data.link_product}}" id="flipkart_link" target="_blank">-->
+<!--                                        <h5 id="flipkart_name">{{ data.name }}</h5>-->
+<!--                                    </a>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-6">-->
+<!--                                            <p id="flipkart_actual_price">Actual price: ₹{{ data.actual_price }}</p>-->
+<!--                                            <p id="flipkart_selling_price">Selling price: ₹{{  data.selling_price }}</p>-->
+<!--                                            <p id="flipkart_rating">Rating: {{ data.rating }}</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-6">-->
+<!--                                            <img width="100%" class="img-fluid" id="flipkart_image" src="/static/images/flipkart.png">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--     <div class="pagination">-->
+<!--                <span class="step-links">-->
+<!--                    <ul class="pagination">-->
+<!--                        {% if data_list_flipkart.has_previous %}-->
+<!--                    <li> <a href="?search={{ q }}&page_flipkart=1&page_amazon={{ data_list_amazon.number }}">&laquo; first</a></li>-->
+<!--                    <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.previous_page_number }}&page_amazon={{ data_list_amazon.number }}">previous</a></li>-->
+<!--                        {% endif %}-->
+
+<!--                        <li class="active"><a href="#"> {{ data_list_flipkart.number }}</a></li>-->
+
+
+<!--                        {% if data_list_flipkart.has_next %}-->
+<!--                        <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.next_page_number }}&page_amazon={{ data_list_amazon.number }}">next</a></li>-->
+<!--                        <li><a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.paginator.num_pages }}&page_amazon={{ data_list_amazon.number }}">last &raquo;</a></li>-->
+<!--                        {% endif %}-->
+<!--                    </ul>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--            <div id="amazonDiv">-->
+<!--                <h1 class="text-center">Amazon</h1>-->
+<!--                <div class="row">-->
+<!--                {% for data in data_list_amazon %}-->
+<!--                    {% if data.source == "amazon" %}-->
+<!--                        <div class="col-sm-6 border-bottom  card bg-transparent">-->
+<!--                            <div class="amazonDivOutput">-->
+<!--                                <a  href="https://www.amazon.in{{ data.link_product }}" id="amazon_link" target="_blank">-->
+<!--                                    <h5 id="amazon_name">{{ data.name }}</h5>-->
+<!--                                </a>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <p id="amazon_actual_price">Actual price: ₹{{ data.actual_price }}</p>-->
+<!--                                        <p id="amazon_selling_price">Selling price: ₹{{  data.selling_price }}</p>-->
+<!--                                        <p id="amazon_rating">Rating: {{ data.rating }}</p>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <img width="100%" class="img-fluid" id="amazon_image" src="{{ data.image}}">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--            </div>-->
+
+
+<!--     <div class="pagination">-->
+<!--                <span class="step-links">-->
+<!--                     <ul class="pagination">-->
+<!--                        {% if data_list_amazon.has_previous %}-->
+<!--                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon=1">&laquo; first</a></li>-->
+<!--                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.previous_page_number }}">previous</a></li>-->
+<!--                        {% endif %}-->
+<!--                         <li class="active"><a href="#"> {{ data_list_amazon.number }}</a></li>-->
+
+<!--                        {% if data_list_amazon.has_next %}-->
+<!--                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.next_page_number }}">next</a></li>-->
+<!--                         <li> <a href="?search={{ q }}&page_flipkart={{ data_list_flipkart.number }}&page_amazon={{ data_list_amazon.paginator.num_pages }}">last &raquo;</a></li>-->
+<!--                        {% endif %}-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+<!--    </div>-->
 
     {% endblock %}
     {% block scriptContent %}
         <!-- Space for adding scripts at the end for some pages -->
-        <script src="{% static "/js/jquery-2.1.4.min.js" %}"></script>
-        {#  <script src="{% static "/js/script.js" %}"></script>#}
-        {#  <script src="{% static "/js/script_data.js" %}"></script>#}
+         <script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
+         <script src="{% static '/js/loggedIn.js' %}"></script>
     {% endblock %}
