@@ -54,11 +54,9 @@ $(document).ready(function() {
 
 
                 }
-
-
-                            $("#flipkartDiv").html(flipkartHtml);
-                            $("#amazonDiv").html( amazonHtml);
-                         }
+                 $("#flipkartDiv").html(flipkartHtml);
+                 $("#amazonDiv").html( amazonHtml);
+            }
                     },
                     error: function (xhr) {
                         alert("error in searching!!");
