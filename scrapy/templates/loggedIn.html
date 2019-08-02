@@ -57,6 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a class="btn btn-default" href="{% url 'payment' %}?amount={{data.selling_price}}">Buy now</a>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -105,6 +106,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <a class="btn btn-default" href="{% url 'payment' %}?amount={{data.selling_price}}">Buy now</a>
                         </div>
                     {% endif %}
                 {% endfor %}

@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'scrapy'
+    'scrapy',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -177,3 +178,8 @@ EMAIL_USE_TLS = get_env_var('EMAIL_USE_TLS')
 EMAIL_HOST_USER = get_env_var('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_env_var('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = get_env_var('DEFAULT_FROM_EMAIL')
+
+#stripe
+STRIPE_SECRET_KEY = 'sk_test_JlqG4djADICOY35ldQ0S2R9P00cK2N1Euj'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_eGY8x7fpjPAmtHXd7dBw6Kw600AapMrJJD'
+

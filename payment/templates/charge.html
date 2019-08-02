@@ -1,0 +1,33 @@
+{% extends 'master_page.html' %}
+{% load staticfiles %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block headContent %}
+  <!-- Space for adding head content for different pages -->
+{% endblock %}
+
+{% block topNav %}
+    <li class="nav-item">
+<!--        <a class="nav-link" href={% url 'login' %}><i class="glyphicon glyphicon-log-in"></i>&nbsp;Login & Signup</a>-->
+    </li>
+{% endblock %}
+
+{% block bodyContent %}
+    <div align="center">
+        <h2>Thanks, you paid <strong>{{ amount }}</strong>!</h2>
+    </div>
+    <div class="charge" align="center">
+        <a class="btn btn-success" href="{% url 'home' %}">Continue Shopping</a>
+        <p> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+    </div>
+{% endblock %}
+
+{% block scriptContent %}
+  <!-- Space for adding scripts at the end for some pages -->
+{% endblock %}
+
+
+

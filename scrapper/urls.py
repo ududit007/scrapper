@@ -7,4 +7,5 @@ urlpatterns = [
     path('', Home.as_view()),
     path('scrapy/', include('scrapy.urls')),
     path('admin/', admin.site.urls),
+    path('payment/', include('payment.urls')),
 ]
